@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8d858cbae961fa5cd31f5f244bc490e1",
+    "content-hash": "2e15d5a2095f541b86954956bb2954b7",
     "packages": [
         {
             "name": "brick/math",
@@ -1055,16 +1055,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v12.54.1",
+            "version": "v12.55.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "325497463e7599cd14224c422c6e5dd2fe832868"
+                "reference": "6d9185a248d101b07eecaf8fd60b18129545fd33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/325497463e7599cd14224c422c6e5dd2fe832868",
-                "reference": "325497463e7599cd14224c422c6e5dd2fe832868",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6d9185a248d101b07eecaf8fd60b18129545fd33",
+                "reference": "6d9185a248d101b07eecaf8fd60b18129545fd33",
                 "shasum": ""
             },
             "require": {
@@ -1180,7 +1180,7 @@
                 "orchestra/testbench-core": "^10.9.0",
                 "pda/pheanstalk": "^5.0.6|^7.0.0",
                 "php-http/discovery": "^1.15",
-                "phpstan/phpstan": "^2.0",
+                "phpstan/phpstan": "^2.1.41",
                 "phpunit/phpunit": "^10.5.35|^11.5.3|^12.0.1",
                 "predis/predis": "^2.3|^3.0",
                 "resend/resend-php": "^0.10.0|^1.0",
@@ -1273,20 +1273,20 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2026-03-10T20:25:56+00:00"
+            "time": "2026-03-18T14:28:59+00:00"
         },
         {
             "name": "laravel/prompts",
-            "version": "v0.3.14",
+            "version": "v0.3.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/prompts.git",
-                "reference": "9f0e371244eedfe2ebeaa72c79c54bb5df6e0176"
+                "reference": "4bb8107ec97651fd3f17f897d6489dbc4d8fb999"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/prompts/zipball/9f0e371244eedfe2ebeaa72c79c54bb5df6e0176",
-                "reference": "9f0e371244eedfe2ebeaa72c79c54bb5df6e0176",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/4bb8107ec97651fd3f17f897d6489dbc4d8fb999",
+                "reference": "4bb8107ec97651fd3f17f897d6489dbc4d8fb999",
                 "shasum": ""
             },
             "require": {
@@ -1330,9 +1330,9 @@
             "description": "Add beautiful and user-friendly forms to your command-line applications.",
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
-                "source": "https://github.com/laravel/prompts/tree/v0.3.14"
+                "source": "https://github.com/laravel/prompts/tree/v0.3.15"
             },
-            "time": "2026-03-01T09:02:38+00:00"
+            "time": "2026-03-17T13:45:17+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -1463,16 +1463,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "2.8.1",
+            "version": "2.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "84b1ca48347efdbe775426f108622a42735a6579"
+                "reference": "59fb075d2101740c337c7216e3f32b36c204218b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/84b1ca48347efdbe775426f108622a42735a6579",
-                "reference": "84b1ca48347efdbe775426f108622a42735a6579",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/59fb075d2101740c337c7216e3f32b36c204218b",
+                "reference": "59fb075d2101740c337c7216e3f32b36c204218b",
                 "shasum": ""
             },
             "require": {
@@ -1566,7 +1566,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-05T21:37:03+00:00"
+            "time": "2026-03-19T13:16:38+00:00"
         },
         {
             "name": "league/config",
@@ -2530,6 +2530,142 @@
                 }
             ],
             "time": "2026-02-16T23:10:27+00:00"
+        },
+        {
+            "name": "php-flasher/flasher",
+            "version": "v2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-flasher/flasher.git",
+                "reference": "b08b7a7d04be27151c737578d6985eadc7e8f952"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-flasher/flasher/zipball/b08b7a7d04be27151c737578d6985eadc7e8f952",
+                "reference": "b08b7a7d04be27151c737578d6985eadc7e8f952",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2",
+                "yoeunes/regex-parser": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "functions.php",
+                    "helpers.php"
+                ],
+                "psr-4": {
+                    "Flasher\\Prime\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Younes ENNAJI",
+                    "email": "younes.ennaji.pro@gmail.com",
+                    "homepage": "https://www.linkedin.com/in/younes--ennaji/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The foundational PHP library for PHPFlasher, enabling the creation of framework-agnostic flash notifications. Ideal for building custom integrations or for use in PHP projects.",
+            "homepage": "https://php-flasher.io",
+            "keywords": [
+                "custom-integrations",
+                "flash-notifications",
+                "flasher-core",
+                "framework-agnostic",
+                "open-source",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/php-flasher/php-flasher/issues",
+                "source": "https://github.com/php-flasher/php-flasher"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/yoeunes",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-03-07T18:31:05+00:00"
+        },
+        {
+            "name": "php-flasher/flasher-laravel",
+            "version": "v2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-flasher/flasher-laravel.git",
+                "reference": "bccad464c82f79b66553e357bfbf1b119c91a7a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-flasher/flasher-laravel/zipball/bccad464c82f79b66553e357bfbf1b119c91a7a8",
+                "reference": "bccad464c82f79b66553e357bfbf1b119c91a7a8",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^11.0|^12.0|^13.0",
+                "php": ">=8.2",
+                "php-flasher/flasher": "^2.5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Flasher": "Flasher\\Laravel\\Facade\\Flasher"
+                    },
+                    "providers": [
+                        "Flasher\\Laravel\\FlasherServiceProvider"
+                    ]
+                },
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Flasher\\Laravel\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Younes ENNAJI",
+                    "email": "younes.ennaji.pro@gmail.com",
+                    "homepage": "https://www.linkedin.com/in/younes--ennaji/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Seamlessly integrate flash notifications into your Laravel applications with PHPFlasher. Enhance user feedback and engagement with minimal setup.",
+            "homepage": "https://php-flasher.io",
+            "keywords": [
+                "flash-notifications",
+                "laravel",
+                "open-source",
+                "php",
+                "phpflasher",
+                "user-feedback"
+            ],
+            "support": {
+                "issues": "https://github.com/php-flasher/php-flasher/issues",
+                "source": "https://github.com/php-flasher/php-flasher"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/yoeunes",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-03-07T18:31:05+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -6008,6 +6144,94 @@
                 }
             ],
             "time": "2024-11-21T01:49:47+00:00"
+        },
+        {
+            "name": "yoeunes/regex-parser",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yoeunes/regex-parser.git",
+                "reference": "770d1142c3c62195fbde7be6e5277da90b65d3a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yoeunes/regex-parser/zipball/770d1142c3c62195fbde7be6e5277da90b65d3a2",
+                "reference": "770d1142c3c62195fbde7be6e5277da90b65d3a2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2"
+            },
+            "suggest": {
+                "phpstan/extension-installer": "To automatically enable the PHPStan rule for regex validation.",
+                "phpstan/phpstan": "To run static analysis and detect invalid regex patterns.",
+                "psr/cache": "To share AST cache via PSR-6 pools.",
+                "psr/simple-cache": "To share AST cache via PSR-16 caches."
+            },
+            "bin": [
+                "bin/regex"
+            ],
+            "type": "library",
+            "extra": {
+                "ide": {
+                    "regex.dist.json": "./regex.schema.json"
+                },
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Automata/LegacyAliases.php"
+                ],
+                "psr-4": {
+                    "RegexParser\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Younes ENNAJI",
+                    "email": "younes.ennaji.pro@gmail.com",
+                    "homepage": "https://www.linkedin.com/in/yoeunes/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A powerful PCRE regex parser with lexer, AST builder, validation, ReDoS analysis, and syntax highlighting. Zero dependencies, blazing fast, and production-ready.",
+            "homepage": "https://github.com/yoeunes/regex-parser",
+            "keywords": [
+                "PCRE",
+                "ast",
+                "cli",
+                "lexer",
+                "parser",
+                "php",
+                "redos",
+                "regex",
+                "security",
+                "syntax-highlighting",
+                "validation"
+            ],
+            "support": {
+                "docs": "https://github.com/yoeunes/regex-parser#readme",
+                "issues": "https://github.com/yoeunes/regex-parser/issues",
+                "source": "https://github.com/yoeunes/regex-parser"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/yoeunes",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-01-12T20:49:05+00:00"
         }
     ],
     "packages-dev": [
@@ -6808,16 +7032,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.53.0",
+            "version": "v1.54.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "e340eaa2bea9b99192570c48ed837155dbf24fbb"
+                "reference": "bcc5e06f1a79d806d880a4b027964d2aa5872b07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/e340eaa2bea9b99192570c48ed837155dbf24fbb",
-                "reference": "e340eaa2bea9b99192570c48ed837155dbf24fbb",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/bcc5e06f1a79d806d880a4b027964d2aa5872b07",
+                "reference": "bcc5e06f1a79d806d880a4b027964d2aa5872b07",
                 "shasum": ""
             },
             "require": {
@@ -6867,7 +7091,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2026-02-06T12:16:02+00:00"
+            "time": "2026-03-11T14:10:52+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -7743,16 +7967,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "6.0.2",
+            "version": "6.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "897b5986ece6b4f9d8413fea345c7d49c757d6bf"
+                "reference": "7bae67520aa9f5ecc506d646810bd40d9da54582"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/897b5986ece6b4f9d8413fea345c7d49c757d6bf",
-                "reference": "897b5986ece6b4f9d8413fea345c7d49c757d6bf",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/7bae67520aa9f5ecc506d646810bd40d9da54582",
+                "reference": "7bae67520aa9f5ecc506d646810bd40d9da54582",
                 "shasum": ""
             },
             "require": {
@@ -7802,9 +8026,9 @@
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
             "support": {
                 "issues": "https://github.com/phpDocumentor/ReflectionDocBlock/issues",
-                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/6.0.2"
+                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/6.0.3"
             },
-            "time": "2026-03-01T18:43:49+00:00"
+            "time": "2026-03-18T20:49:53+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
