@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginUserRequest extends FormRequest
+class UpdateProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,11 @@ class LoginUserRequest extends FormRequest
      */
     public function rules(): array
     {
-
-               return [
-                   'email' => ['required', 'email'],
-                   'password' => ['required', 'min:8', 'max:16'],
-               ];
+        return [
+            'image' => ['nullable', 'image', 'mimes:jpeg,jpg,png'],
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $this->user()->id,
+            'password' => 'confirmed',
+        ];
     }
 }

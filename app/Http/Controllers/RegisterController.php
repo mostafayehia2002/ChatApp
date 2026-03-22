@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegisterUserRequest;
-use App\Services\RegisterUserService;
+use App\Http\Requests\RegisterRequest;
+use App\Services\RegisterService;
 use Illuminate\Http\Request;
 
-class RegisterUserController extends Controller
+class RegisterController extends Controller
 {
     //
-    protected RegisterUserService $registerUserService;
+    protected RegisterService $registerService;
 
-    public function __construct(RegisterUserService $registerUserService)
+    public function __construct(RegisterService $registerService)
     {
-        $this->registerUserService = $registerUserService;
+        $this->registerService = $registerService;
 
     }
     public function index()
     {
         return view('auth.register');
     }
-    public function store(RegisterUserRequest $request)
+    public function store(RegisterRequest $request)
     {
-        $response = $this->registerUserService->store($request);
+        $response = $this->registerService->store($request);
         if ($response['success']) {
 
             notifyMessage(message:$response['message']);

@@ -1,21 +1,33 @@
 <?php
 
-use App\Http\Controllers\LoginUserController;
-use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
+// Redirect root to login
 Route::get('/', function () {
-    return redirect()->route('users.login');
+    return redirect()->route('login');
 });
-Route::group(['prefix' => 'users', 'as' => 'users.', 'middleware' => 'guest'], function () {
-    Route::get('/login', [LoginUserController::class, 'index'])->name('login');
-    Route::post('/login', [LoginUserController::class, 'login'])->name('login.submit');
-    Route::get('/register', [RegisterUserController::class, 'index'])->name('register');
-    Route::post('/store', [RegisterUserController::class, 'store'])->name('store');
+
+// Guest routes (unauthenticated users)
+Route::middleware(['guest'])->group(function () {
+    // Login
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'login'])->name('login.store');
+    // Register
+    Route::get('/register', [RegisterController::class, 'index'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 });
-Route::group(['middleware' => 'auth'], function () {
-    //home page route
-    Route::view('/home', 'index')->name('home');
-    //logout
-   // Route::post('/logout', [LogoutUserController::class, 'logout'])->name('users.logout');
+// Authenticated routes
+Route::middleware(['auth'])->group(function () {
+    // Home/Dashboard
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    // Logout
+    Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+    // Profile
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });

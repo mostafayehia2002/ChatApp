@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginUserRequest;
-use App\Services\LoginUserService;
+use App\Http\Requests\LoginRequest;
+use App\Services\LoginService;
 use Illuminate\Http\Request;
 
-class LoginUserController extends Controller
+class LoginController extends Controller
 {
-    protected LoginUserService $loginUserService;
+    protected LoginService $loginService;
 
-    public function __construct(LoginUserService $loginUserService)
+    public function __construct(LoginService $loginService)
     {
-        $this->loginUserService = $loginUserService;
+        $this->loginService = $loginService;
     }
 
     public function index()
@@ -21,9 +21,9 @@ class LoginUserController extends Controller
 
     }
 
-    public function login(LoginUserRequest $request)
+    public function login(LoginRequest $request)
     {
-        $response = $this->loginUserService->login($request);
+        $response = $this->loginService->login($request);
         if ($response['success']) {
             notifyMessage(message:$response['message']);
 

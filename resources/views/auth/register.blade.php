@@ -40,7 +40,7 @@
 <div class="container">
     <div class="register-form">
         <h4 class="form-title">Create Account</h4>
-        <form action="{{route('users.store')}}" method="POST">
+        <form action="{{route('register.store')}}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Full Name</label>
@@ -63,8 +63,6 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                        placeholder="********" name="password">
-
-
             </div>
             <div class="mb-3">
                 <label for="password_confirmation" class="form-label">Confirm Password</label>
@@ -77,7 +75,7 @@
                 @enderror
             </div>
             <button type="submit" class="btn btn-success btn-register">Register</button>
-            <a href="{{route('users.login')}}" class="login-link">Already have an account? Login here</a>
+            <a href="{{route('login')}}" class="login-link">Already have an account? Login here</a>
         </form>
     </div>
 </div>

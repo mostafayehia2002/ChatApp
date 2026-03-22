@@ -2,21 +2,21 @@
 
 namespace App\Services;
 
-use App\Http\Requests\RegisterUserRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
-class RegisterUserService
+class RegisterService
 {
     /**
      * Create a new class instance.
      */
 
 
-    public function store(RegisterUserRequest $request): array
+    public function store(RegisterRequest $request): array
     {
         DB::beginTransaction();
         try {

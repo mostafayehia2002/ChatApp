@@ -39,7 +39,7 @@
 <div class="container">
     <div class="login-form">
         <h4 class="form-title">Login</h4>
-        <form action="{{route('users.login.submit')}}" method="post">
+        <form action="{{route('login.store')}}" method="post">
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
@@ -58,7 +58,7 @@
                 @enderror
             </div>
             <button type="submit" class="btn btn-primary btn-login">Login</button>
-            <a href="{{route('users.register')}}" class="register-link">Don't have an account? Create one</a>
+            <a href="{{route('register')}}" class="register-link">Don't have an account? Create one</a>
         </form>
     </div>
 </div>

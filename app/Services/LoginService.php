@@ -2,16 +2,16 @@
 
 namespace App\Services;
 
-use App\Http\Requests\LoginUserRequest;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
-class LoginUserService
+class LoginService
 {
     /**
      * Create a new class instance.
      */
-    public function login(LoginUserRequest $request): array
+    public function login(LoginRequest $request): array
     {
         $data=$request->validated();
         try {

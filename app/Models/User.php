@@ -49,6 +49,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function media()
+    {
+        return $this->morphOne(Media::class,'mediable');
+    }
 
     public function conversations():BelongsToMany
     {
