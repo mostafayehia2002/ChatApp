@@ -12,7 +12,7 @@
             </p>
         </div>
     @endsection
-@elseif(request()->routeIs('chat/*'))
+@elseif(request()->routeIs('conversation.show'))
     @section('content')
         <!-- Chat Window -->
         <div id="chatWindow" class="col-md-9 d-flex flex-column justify-content-between p-0"
@@ -20,11 +20,11 @@
             <!-- Chat Navbar -->
             <div class="bg-white p-2 px-3 d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center gap-2">
-                    <img src="https://i.pravatar.cc/40?img=1" alt="Ahmed Mohamed" class="rounded-circle"
+                    <img src="{{asset($conversation['image']) }}" alt="Ahmed Mohamed" class="rounded-circle"
                          style="width: 40px; height: 40px;">
                     <div>
-                        <strong>Ahmed Mohamed</strong><br>
-                        <small class="text-muted">Online </small>
+                        <strong>{{$conversation['name']}}</strong><br>
+                        <small class="text-muted">{{$conversation['last_seen']}} </small>
                     </div>
                 </div>
 
@@ -44,20 +44,6 @@
             <!-- Messages or default placeholder -->
             <div id="messages" class="flex-grow-1 p-3" style="overflow-y: auto; background-color: #f1f1f1;">
 
-
-                <!-- Example messages -->
-                <div class="mb-2 d-flex justify-content-end">
-                    <div class="p-2 px-3 rounded bg-primary text-white" style="max-width: 75%;">
-                        Hey Ahmed! How are you? first
-                        <div class="text-white-50 small text-end">10:30 AM</div>
-                    </div>
-                </div>
-                <div class="mb-2 d-flex justify-content-start">
-                    <div class="p-2 px-3 rounded bg-white border" style="max-width: 75%;">
-                        I'm good, thanks! What about you?
-                        <div class="text-muted small">10:31 AM</div>
-                    </div>
-                </div>
                 <!-- Example messages -->
                 <div class="mb-2 d-flex justify-content-end">
                     <div class="p-2 px-3 rounded bg-primary text-white" style="max-width: 75%;">
@@ -68,45 +54,6 @@
                 <div class="mb-2 d-flex justify-content-start">
                     <div class="p-2 px-3 rounded bg-white border" style="max-width: 75%;">
                         I'm good, thanks! What about you?
-                        <div class="text-muted small">10:31 AM</div>
-                    </div>
-                </div>
-                <!-- Example messages -->
-                <div class="mb-2 d-flex justify-content-end">
-                    <div class="p-2 px-3 rounded bg-primary text-white" style="max-width: 75%;">
-                        Hey Ahmed! How are you?
-                        <div class="text-white-50 small text-end">10:30 AM</div>
-                    </div>
-                </div>
-                <div class="mb-2 d-flex justify-content-start">
-                    <div class="p-2 px-3 rounded bg-white border" style="max-width: 75%;">
-                        I'm good, thanks! What about you?
-                        <div class="text-muted small">10:31 AM</div>
-                    </div>
-                </div>
-                <!-- Example messages -->
-                <div class="mb-2 d-flex justify-content-end">
-                    <div class="p-2 px-3 rounded bg-primary text-white" style="max-width: 75%;">
-                        Hey Ahmed! How are you?
-                        <div class="text-white-50 small text-end">10:30 AM</div>
-                    </div>
-                </div>
-                <div class="mb-2 d-flex justify-content-start">
-                    <div class="p-2 px-3 rounded bg-white border" style="max-width: 75%;">
-                        I'm good, thanks! What about you?
-                        <div class="text-muted small">10:31 AM</div>
-                    </div>
-                </div>
-                <!-- Example messages -->
-                <div class="mb-2 d-flex justify-content-end">
-                    <div class="p-2 px-3 rounded bg-primary text-white" style="max-width: 75%;">
-                        Hey Ahmed! How are you?
-                        <div class="text-white-50 small text-end">10:30 AM</div>
-                    </div>
-                </div>
-                <div class="mb-2 d-flex justify-content-start">
-                    <div class="p-2 px-3 rounded bg-white border" style="max-width: 75%;">
-                        I'm good, thanks! What about you? last
                         <div class="text-muted small">10:31 AM</div>
                     </div>
                 </div>

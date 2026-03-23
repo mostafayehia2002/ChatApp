@@ -9,12 +9,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Conversation extends Model
 {
-    protected $fillable = [];
 
-    public function participants():BelongsToMany
+    protected $fillable = [
+        'last_message_id',
+    ];
+
+    public function participants():HasMany
     {
-        return $this->belongsToMany(User::class, 'conversation_participants')
-            ->withTimestamps();
+        return $this->hasMany(ConversationParticipant::class);
     }
 
     public function messages(): HasMany

@@ -20,7 +20,7 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar: Contacts -->
-            @includeWhen(request()->routeIs(['home']), 'layouts.sidebar')
+            @includeWhen(request()->routeIs(['home','conversation.show']), 'layouts.sidebar')
             <!-- Chat Window -->
             @yield('content')
         </div>

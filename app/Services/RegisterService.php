@@ -31,7 +31,7 @@ class RegisterService
             ];
         } catch (\Throwable $e) {
             DB::rollBack();
-            Log::error('RegisterUserService@store: ' . $e->getMessage());
+            Log::error('RegisterService@store: ' . $e->getMessage());
             return [
                 'success' => false,
                 'message' => 'An Error Occurred During Register'

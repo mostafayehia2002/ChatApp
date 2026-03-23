@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -24,10 +26,14 @@ Route::middleware(['guest'])->group(function () {
 // Authenticated routes
 Route::middleware(['auth'])->group(function () {
     // Home/Dashboard
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::match(['GET','POST'],'/home', [HomeController::class, 'index'])->name('home');
     // Logout
     Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+     //chat
+    Route::post('/chat', [ChatController::class, 'store'])->name('chat.store');
+    //conversation
+    Route::get('/conversation/{id}', [ConversationController::class, 'showConversation'])->name('conversation.show');
 });

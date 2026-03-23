@@ -14,8 +14,11 @@
 
     <!-- search -->
     <div class="px-3 pt-3 pb-2">
-        <form class="position-relative">
+        <form class="position-relative" action="{{route('home') }}" method="POST">
+            @csrf
             <input type="text"
+                   name="search"
+                  value="{{ request('search') }}"
                    class="form-control form-control-sm rounded-pill ps-4 pe-5"
                    placeholder=""
                    id="contactsSearchInput">
@@ -33,22 +36,21 @@
     </div>
     <!-- Example contacts -->
     <div id="conversions">
-        <a href="" class="text-decoration-none text-dark" data-id="1">
+        @forelse($conversations as $conversation)
+        <a href="{{route('conversation.show',['id'=>$conversation['id']])}}" class="text-decoration-none text-dark" data-id="1">
             <div class="p-2 px-3 border-bottom d-flex align-items-center">
-
                 <!-- avatar -->
-                <img src="https://i.pravatar.cc/40?img=1"
+                <img src="{{asset($conversation['image'])}}"
                      class="rounded-circle me-2"
-                     style="width: 40px; height: 40px; object-fit: cover;">
-
+                     style="width: 40px; height: 40px; object-fit: cover;" alt="">
                 <!-- name + last message -->
                 <div class="flex-grow-1 overflow-hidden">
                     <div class="fw-bold text-truncate">
-                        Mostafa Yehia
+                        {{ $conversation['name'] }}
                     </div>
 
                     <div class="text-muted small text-truncate">
-                        last message preview goes here...
+                        {{ $conversation['last_message'] }}
                     </div>
                 </div>
 
@@ -56,49 +58,30 @@
                 <div class="text-end ms-2 d-flex flex-column align-items-end">
 
                     <!-- time -->
-                    <span class="text-muted small">  12:30 PM </span>
+                    <span class="text-muted small">{{ $conversation['time'] }} </span>
 
                     <!-- unread count -->
-                    <span class="badge bg-success mt-1">3</span>
+                    @if($conversation['unread'] > 0)
+                        <span class="badge bg-success mt-1">
+                        {{ $conversation['unread'] }}
+                    </span>
+                    @endif
 
                 </div>
             </div>
         </a>
 
-        <a href="" class="text-decoration-none text-dark" data-id="2">
-            <div class="p-2 px-3 border-bottom d-flex align-items-center">
+        @empty
 
-                <!-- avatar -->
-                <img src="https://i.pravatar.cc/40?img=1"
-                     class="rounded-circle me-2"
-                     style="width: 40px; height: 40px; object-fit: cover;">
-
-                <!-- name + last message -->
-                <div class="flex-grow-1 overflow-hidden">
-                    <div class="fw-bold text-truncate">
-                        Ahmed
-                    </div>
-
-                    <div class="text-muted small text-truncate">
-                        last message preview goes here...
-                    </div>
-                </div>
-
-                <!-- right side -->
-                <div class="text-end ms-2 d-flex flex-column align-items-end">
-                    <!-- time -->
-                    <span class="text-muted small">12:30 PM</span>
-                    <!-- unread count -->
-                    <span class="badge bg-success mt-1">1</span>
-                </div>
+            <div class="text-center text-muted p-3">
+                No conversations yet
             </div>
-        </a>
 
-
+        @endforelse
     </div>
 </div>
 
-<!-- Add Contact Modal -->
+<!-- New Conversation Modal -->
 <div class="modal fade" id="addContactModal" tabindex="-1" aria-labelledby="addContactModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -107,12 +90,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="addContactForm" action="" method="POST">
+                <form id="addContactForm" action="{{route('chat.store')}}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="contactEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="contactEmail" placeholder="Enter email"
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="contactEmail" placeholder="Enter email"
                                name="email">
+                        @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Message here</label>
@@ -128,3 +114,17 @@
         </div>
     </div>
 </div>
+@push('script')
+    <script>
+        const searchInput = document.getElementById('contactsSearchInput');
+
+        let timeout = null;
+        searchInput.addEventListener('keyup', function () {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                const query = this.value;
+                window.location.href = `?search=${query}`;
+            }, 1000);
+        });
+    </script>
+@endpush
