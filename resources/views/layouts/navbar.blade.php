@@ -7,7 +7,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
                            role="button" data-bs-toggle="dropdown" aria-expanded="false" style="gap: 10px;">
-                            <img src="{{asset($user->media ?'storage/'.$user->media->file_path:'storage/uploads/profiles/profile.jpg') }}"
+                            <img src="{{$user->media? $user->media->file_url :asset("storage/uploads/profiles/profile.jpg")}}"
                                  alt="Profile"
                                  class="rounded-circle border border-2 border-primary"
                                  style="width:40px; height:40px; object-fit: cover; box-shadow: 0 0 5px rgba(0,0,0,0.1);">

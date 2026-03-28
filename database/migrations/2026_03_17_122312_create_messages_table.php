@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\MessageType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,19 +17,15 @@ return new class extends Migration
             $table->foreignId('conversation_id')
                 ->constrained('conversations')
                 ->cascadeOnDelete();
-
             $table->foreignId('sender_id')
                 ->constrained('users')
                 ->cascadeOnDelete();
-
-            $table->enum('type', ['text', 'image', 'file', 'voice'])
-                ->default('text');
-
+            $table->unsignedTinyInteger('type')->default(MessageType::TEXT->value);
             $table->text('message')->nullable();
             $table->timestamps();
             $table->softDeletes();
             // Performance
-            $table->index(['conversation_id', 'created_at']);
+            $table->index(['conversation_id','created_at']);
             $table->index('sender_id');
 
         });

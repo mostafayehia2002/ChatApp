@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Enums\MessageType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -19,6 +21,12 @@ class Message extends Model
         'message'
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'type' => MessageType::class,
+        ];
+    }
     public function conversation(): BelongsTo
     {
         return $this->belongsTo(Conversation::class);
@@ -38,4 +46,6 @@ class Message extends Model
     {
         return $this->morphMany(Media::class, 'mediable');
     }
+
+
 }

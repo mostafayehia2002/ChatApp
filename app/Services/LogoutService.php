@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class LogoutService
 {
@@ -14,14 +15,18 @@ class LogoutService
     {
         try {
             Auth::logout();
+            request()->session()->invalidate();
+            request()->session()->regenerateToken();
             return [
                 'success' => true,
                 'message' => 'Logout Successfully'
             ];
-        } catch (\Exception $exception) {
+        } catch (\Throwable $e) {
+
+            Log::error('LogoutService@logout: ' . $e->getMessage());
             return [
                 'success' => false,
-                'message' => $exception->getMessage()
+                'message' =>'An error occured while logging out'
             ];
         }
     }

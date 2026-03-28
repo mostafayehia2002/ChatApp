@@ -23,16 +23,23 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(ConversationService $conversationService): void
     {
-        View::composer('*', function ($view) use ($conversationService) {
+        // Navbar needs only user
+        View::composer(['layouts.navbar','auth.profile'], function ($view) {
+            $view->with('user', Auth::user());
+        });
 
+        // Sidebar needs conversations (expensive)
+        View::composer('layouts.sidebar', function ($view) use ($conversationService) {
             $user = Auth::user();
-            $view->with('user', $user);
             $conversations = [];
+
             if ($user) {
-                $conversations = Cache::remember('user_'.$user->id.'_conversations', 3600, function () use ($conversationService, $user) {
-                    return $conversationService->getUserConversations($user->id,request()->input('search'));
-                });
+                $conversations = $conversationService->getUserConversations(
+                    $user->id,
+                    request('search')
+                );
             }
+
             $view->with('conversations', $conversations);
         });
     }

@@ -14,7 +14,7 @@
                     <div class="position-relative">
 
                         <img id="profilePreview"
-                             src="{{asset($user->media?'storage/'.$user->media->file_path:'storage/uploads/profiles/profile.jpg') }}"
+                             src="{{$user->media?$user->media->file_url:asset('storage/uploads/profiles/profile.jpg')}}"
                              alt="no profile photo"
                              class="rounded-circle border"
                              style="width:120px; height:120px; object-fit:cover;">

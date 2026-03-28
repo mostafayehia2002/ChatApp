@@ -14,33 +14,22 @@
 
     <!-- search -->
     <div class="px-3 pt-3 pb-2">
-        <form class="position-relative" action="{{route('home') }}" method="POST">
-            @csrf
+        <div class="position-relative">
             <input type="text"
-                   name="search"
-                  value="{{ request('search') }}"
-                   class="form-control form-control-sm rounded-pill ps-4 pe-5"
-                   placeholder=""
-                   id="contactsSearchInput">
-
-            <!-- search icon -->
+                   id="contactsSearchInput"
+                   value="{{ request('search') }}"
+                   class="form-control form-control-sm rounded-pill ps-4"
+                   placeholder="Search...">
             <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
-
-            <!-- button -->
-            <button type="submit"
-                    class="btn btn-sm btn-primary position-absolute top-50 end-0 translate-middle-y me-1 rounded-circle"
-                    style="width: 30px; height: 30px;">
-                <i class="fas fa-arrow-right"></i>
-            </button>
-        </form>
+        </div>
     </div>
     <!-- Example contacts -->
     <div id="conversions">
         @forelse($conversations as $conversation)
-        <a href="{{route('conversation.show',['id'=>$conversation['id']])}}" class="text-decoration-none text-dark" data-id="1">
+        <a href="{{route('conversation.show',['conversationId'=>$conversation['id']])}}" class="text-decoration-none text-dark" data-id="1">
             <div class="p-2 px-3 border-bottom d-flex align-items-center">
                 <!-- avatar -->
-                <img src="{{asset($conversation['image'])}}"
+                <img src="{{$conversation['image']}}"
                      class="rounded-circle me-2"
                      style="width: 40px; height: 40px; object-fit: cover;" alt="">
                 <!-- name + last message -->
@@ -90,7 +79,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="addContactForm" action="{{route('chat.store')}}" method="POST">
+                <form id="addContactForm" action="{{route('conversation.store')}}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="contactEmail" class="form-label">Email</label>
@@ -114,17 +103,20 @@
         </div>
     </div>
 </div>
-@push('script')
-    <script>
-        const searchInput = document.getElementById('contactsSearchInput');
 
-        let timeout = null;
-        searchInput.addEventListener('keyup', function () {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => {
-                const query = this.value;
-                window.location.href = `?search=${query}`;
-            }, 1000);
-        });
-    </script>
-@endpush
+    @push('script')
+        <script>
+            const searchInput = document.getElementById('contactsSearchInput');
+            if (searchInput) {
+                let timeout = null;
+                searchInput.addEventListener('keyup', function () {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => {
+                        const query = this.value;
+                        window.location.href = `?search=${encodeURIComponent(query)}`;
+                    }, 500);
+                });
+            }
+        </script>
+    @endpush
+

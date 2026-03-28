@@ -15,13 +15,11 @@ class ProfileService
      */
     public function update(UpdateProfileRequest $request): array
     {
+        DB::beginTransaction();
         try {
-            DB::beginTransaction();
             $user = auth()->user();
             $data = $request->validated();
-            if ($request->filled('password')) {
-                $data['password'] = Hash::make($request->password);
-            }else{
+            if (!$request->filled('password')) {
                 unset($data['password']);
             }
             $user->update($data);
@@ -32,33 +30,32 @@ class ProfileService
                 $mediaData = [
                     'file_name' => $fileName,
                     'file_path' => $filePath,
-                    'mime_type' => $file->getClientMimeType(),
+                    'mime_type' => $file->getMimeType(),
                     'file_size' => $file->getSize(),
                 ];
-
                 if ($user->media) {
-                    if (Storage::disk('public')->exists($user->media->file_path)) {
-
-                        Storage::disk('public')->delete($user->media->file_path);
+                    $oldPath = $user->media->file_path;
+                    if ($oldPath && Storage::disk('public')->exists($oldPath)) {
+                        Storage::disk('public')->delete($oldPath);
                     }
+
                     $user->media->update($mediaData);
                 } else {
                     $user->media()->create($mediaData);
                 }
             }
-
             DB::commit();
             return [
                 'success' => true,
-                'message' => 'Profile updated successfully!'
+                'message' => 'Profile updated successfully!',
             ];
         } catch (\Throwable $e) {
             DB::rollBack();
-            Log::error('ProfileService@update: ' . $e->getMessage() . "\n" . $e->getTraceAsString());
+            Log::error('ProfileService@update: ' . $e->getMessage());
 
             return [
                 'success' => false,
-                'message' => 'An error occurred during updating profile.'
+                'message' => 'An error occurred during updating profile.',
             ];
         }
     }

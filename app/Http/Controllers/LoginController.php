@@ -32,6 +32,6 @@ class LoginController extends Controller
         //notify a message
         notifyMessage(message:$response['message'], type:'error');
 
-        return redirect()->back()->withInput($request->only('email', 'password'));
+        return redirect()->back()->withInput($request->only('email'));
     }
 }

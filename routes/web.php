@@ -15,7 +15,7 @@ Route::get('/', function () {
 });
 
 // Guest routes (unauthenticated users)
-Route::middleware(['guest'])->group(function () {
+Route::middleware('guest')->group(function () {
     // Login
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('login.store');
@@ -24,16 +24,19 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 });
 // Authenticated routes
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','last_activity'])->group(function () {
     // Home/Dashboard
-    Route::match(['GET','POST'],'/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
     // Logout
     Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
-     //chat
-    Route::post('/chat', [ChatController::class, 'store'])->name('chat.store');
-    //conversation
-    Route::get('/conversation/{id}', [ConversationController::class, 'showConversation'])->name('conversation.show');
+     //conversations
+    Route::post('/conversations', [ConversationController::class, 'store'])->name('conversation.store');
+    Route::get('/conversations/{conversationId}', [ConversationController::class, 'showConversation'])->name('conversation.show');
+    Route::get('/conversations/{conversationId}/messages', [ConversationController::class, 'getMoreMessages'])
+        ->name('conversation.messages');
+    //chats
+    Route::post('/chat',[ChatController::class,'store'])->name('chat.store');
 });

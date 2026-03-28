@@ -20,10 +20,10 @@ class RegisterService
     {
         DB::beginTransaction();
         try {
-            $data=$request->validated();
-            $data['password']=Hash::make($data['password']);
+            $data = $request->validated();
             $user = User::create($data);
             Auth::login($user);
+            $request->session()->regenerate();
             DB::commit();
             return [
                 'success' => true,

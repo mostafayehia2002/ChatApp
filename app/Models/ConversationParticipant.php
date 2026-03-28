@@ -22,4 +22,8 @@ class ConversationParticipant extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function lastReadMessage(): BelongsTo
+    {
+        return $this->belongsTo(Message::class, 'last_read_message_id');
+    }
 }

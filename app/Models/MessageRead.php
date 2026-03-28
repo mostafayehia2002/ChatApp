@@ -12,7 +12,9 @@ class MessageRead extends Model
         'user_id',
         'read_at'
     ];
-
+    protected $casts = [
+        'read_at' => 'datetime',
+    ];
     public function message(): BelongsTo
     {
         return $this->belongsTo(Message::class);

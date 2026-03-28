@@ -13,21 +13,29 @@ class LoginService
      */
     public function login(LoginRequest $request): array
     {
-        $data=$request->validated();
+        $credentials=$request->validated();
         try {
-            if(Auth::attempt(['email' => $data['email'], 'password' => $data['password']],true)){
+            $authenticated = Auth::attempt(
+                [
+                    'email' => $credentials['email'],
+                    'password' => $credentials['password'],
+                ],
+                false
+            );
+            if ($authenticated) {
+                $request->session()->regenerate();
                 return [
                     'success' => true,
-                    'message' => 'Login Successful'
-                ];
-            } else {
-                return [
-                    'success' => false,
-                    'message' => 'Invalid Credentials'
+                    'message' => 'Login successful',
                 ];
             }
+
+            return [
+                'success' => false,
+                'message' => 'Invalid credentials',
+            ];
         }catch (\Throwable $e) {
-            Log::error('LoginUserService@login: ' . $e->getMessage());
+            Log::error('LoginService@login: ' . $e->getMessage());
             return [
                 'success' => false,
                 'message' => 'An Error Occurred During Login'
