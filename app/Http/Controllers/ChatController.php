@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageSent;
 use App\Http\Requests\StoreChatRequest;
 use App\Services\ChatService;
 use Illuminate\Http\Request;
@@ -20,6 +21,9 @@ class ChatController extends Controller
 
         if ($response['success']) {
             notifyMessage(message: $response['message']);
+
+           // broadcast(new MessageSent($response['data'], (int) $request->conversation_id))->toOthers();
+
             return redirect()->back();
         }
         notifyMessage(message: $response['message'], type: 'error');

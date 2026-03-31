@@ -1,8 +1,34 @@
-
+console.log('scripts.js loaded');
 document.addEventListener('DOMContentLoaded', function () {
+    // Sidebar Toggle
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    
+    if (sidebarToggle && sidebar) {
+        sidebarToggle.addEventListener('click', function () {
+            // Check if desktop or mobile
+            if (window.innerWidth >= 768) {
+                // Desktop: toggle hidden class
+                sidebar.classList.toggle('hidden');
+                localStorage.setItem('sidebarDesktopHidden', sidebar.classList.contains('hidden'));
+            } else {
+                // Mobile: toggle show class
+                sidebar.classList.toggle('show');
+                localStorage.setItem('sidebarMobileShown', sidebar.classList.contains('show'));
+            }
+        });
+        
+        // Restore sidebar state for desktop
+        if (window.innerWidth >= 768) {
+            const sidebarHidden = localStorage.getItem('sidebarDesktopHidden') === 'true';
+            if (sidebarHidden) {
+                sidebar.classList.add('hidden');
+            }
+        }
+    }
+    
     const messagesDiv = document.getElementById('messages');
     if (!messagesDiv) return;
-
     scrollMessagesToBottom(messagesDiv);
     initInfiniteScroll(messagesDiv);
 });

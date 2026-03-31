@@ -1,27 +1,27 @@
 <div class="bg-white p-2 px-3 d-flex justify-content-between align-items-center">
     <div class="d-flex align-items-center gap-2">
-        <img src="{{$conversation['chat_user']['image']}}" alt="Ahmed Mohamed" class="rounded-circle"
-             style="width: 40px; height: 40px;">
+        <img src="{{ $conversation['chat_user']['image'] }}" alt="Ahmed Mohamed" class="rounded-circle"
+            style="width: 40px; height: 40px;">
         <div>
-            <strong>{{$conversation['chat_user']['name']}}</strong><br>
-            <small class="text-muted">{{$conversation['chat_user']['last_seen']}} </small>
+            <strong>{{ $conversation['chat_user']['name'] }}</strong><br>
+            <small class="text-muted">{{ $conversation['chat_user']['last_seen'] }} </small>
         </div>
     </div>
     <div>
         <!-- Search Button with same bg as settings -->
         <button class="btn btn-sm btn-light me-2" data-bs-toggle="modal" data-bs-target="#searchChatModal"
-                title="Search Chat">
+            title="Search Chat">
             <i class="fas fa-search"></i>
         </button>
         <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#chatSettingsModal"
-                title="Settings">
+            title="Settings">
             <i class="fas fa-ellipsis-v"></i>
         </button>
     </div>
 </div>
 <!-- Chat Settings Modal -->
 <div class="modal fade" id="chatSettingsModal" tabindex="-1" aria-labelledby="chatSettingsModalLabel"
-     aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -38,8 +38,7 @@
     </div>
 </div>
 <!-- Search Chat Modal -->
-<div class="modal fade" id="searchChatModal" tabindex="-1" aria-labelledby="searchChatModalLabel"
-     aria-hidden="true">
+<div class="modal fade" id="searchChatModal" tabindex="-1" aria-labelledby="searchChatModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

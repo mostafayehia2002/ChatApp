@@ -1,31 +1,125 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
+
+html,
 body {
+    height: 100%;
+    width: 100%;
     background-color: #f8f9fa;
+    overflow: hidden;
+}
+
+main {
+    height: 100%;
+    padding: 0 !important;
+}
+
+main .container-fluid {
+    height: 100%;
+    padding: 0;
+}
+
+/* Main Layout */
+#mainContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    height: calc(100vh - 50px);
+    gap: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#chatContainer {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 0;
 }
 
 /* Navbar app غامق */
 nav.navbar-app {
-    background-color: #212529; /* لون غامق */
+    background-color: #fff !important;
     height: 50px;
 }
-nav.navbar-app .navbar-brand,
+
+nav.navbar-app .navbar-brand {
+    color: #0d6efd !important;
+}
+
 nav.navbar-app .nav-link,
 nav.navbar-app .btn-link {
-    color: #fff;
+    color: #212529 !important;
 }
+
 nav.navbar-app .nav-link:hover,
 nav.navbar-app .btn-link:hover {
-    color: #adb5bd;
+    color: #0d6efd !important;
 }
 
 #messages {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
 }
 
 #messages::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
+    display: none;
+    /* Chrome, Safari */
+}
+
+/* Sidebar Toggle */
+#sidebar {
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    background-color: white;
+    margin-top: 4px;
+}
+
+/* Hide sidebar on mobile */
+@media (max-width: 767.98px) {
+    #sidebar {
+        position: fixed;
+        left: 0;
+        top: 50px;
+        width: 100vw;
+        height: calc(100vh - 50px);
+        margin-left: -100vw;
+        z-index: 1000;
+        border-right: 1px solid #dee2e6;
+        overflow-y: auto;
+    }
+
+    #sidebar.show {
+        margin-left: 0;
+    }
+
+    #chatContainer {
+        width: 100% !important;
+    }
+}
+
+/* Show sidebar on desktop */
+@media (min-width: 768px) {
+    #sidebar {
+        position: relative !important;
+        top: auto !important;
+        width: 25% !important;
+        min-width: 250px;
+        min-height: calc(100vh - 50px);
+        z-index: auto !important;
+        border-right: 1px solid #dee2e6;
+        overflow-y: auto;
+        padding-top: 15px;
+    }
+
+    #sidebar.hidden {
+        display: none !important;
+    }
+
+    #chatContainer {
+        flex-grow: 1;
+        min-width: 0;
+    }
 }

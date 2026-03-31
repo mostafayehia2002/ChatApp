@@ -77,7 +77,7 @@ class ChatService
             return [
                 'success' => true,
                 'message' => 'Message sent successfully',
-                'data' => $message,
+                'data' =>  $message->load(['reads', 'media']),
             ];
         } catch (\Throwable $e) {
             DB::rollBack();
@@ -96,5 +96,8 @@ class ChatService
             ];
         }
     }
+
+
+
 
 }

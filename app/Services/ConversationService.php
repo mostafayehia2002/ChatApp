@@ -217,4 +217,26 @@ class ConversationService
             );
         }
     }
+
+
+    public function formatSingleMessage(Message $message, int $currentUserId, ?int $otherUserId): array
+    {
+        $readByOtherUser = $message->reads->firstWhere('user_id', $otherUserId);
+
+        return [
+            'id' => $message->id,
+            'sender_id' => $message->sender_id,
+            'is_me' => $message->sender_id === $currentUserId,
+            'body' => $message->message,
+            'time' => $message->created_at->format('h:i A'),
+            'is_read' => (bool) $readByOtherUser,
+            'read_at' => $readByOtherUser?->read_at?->format('h:i A'),
+            'media' => $message->media->map(fn ($media) => [
+                'file_name' => $media->file_name,
+                'file_url' => $media->file_url,
+                'media_category' => $media->media_category,
+                'human_file_size' => $media->human_file_size,
+            ])->values(),
+        ];
+    }
 }

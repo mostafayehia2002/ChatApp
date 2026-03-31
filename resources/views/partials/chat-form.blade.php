@@ -1,14 +1,14 @@
 <div id="previewContainer" class="p-2 d-flex flex-wrap gap-2"></div>
-<form id="messageForm" method="POST" action="{{route('chat.store')}}" enctype="multipart/form-data"
-      class="d-flex border-top p-2 px-3 bg-white">
+<form id="messageForm" method="POST" action="{{ route('chat.store') }}" enctype="multipart/form-data"
+    class="d-flex border-top p-2 px-3 bg-white">
     @csrf
-    <input type="hidden" name="conversation_id" value="{{$conversation['conversation']['id']}}">
-    <input id="messageInput" name="body" class="form-control me-2 form-control-sm"
-           placeholder="Type your message..." autocomplete="off">
+    <input type="hidden" name="conversation_id" value="{{ $conversation['conversation']['id'] }}">
+    <input id="messageInput" name="body" class="form-control me-2 form-control-sm" placeholder="Type your message..."
+        autocomplete="off">
     <label for="fileInput" class="btn btn-light me-2 mb-0" title="Attach File" style="cursor: pointer;">
         <i class="fas fa-paperclip"></i>
     </label>
-    <input type="file" id="fileInput" name="attachment[]" class="d-none"  multiple/>
+    <input type="file" id="fileInput" name="attachment[]" class="d-none" multiple />
     <button type="submit" class="btn btn-primary btn-sm">Send</button>
 </form>
 @push('script')
@@ -18,7 +18,7 @@
         const previewContainer = document.getElementById('previewContainer');
 
         if (fileInput && previewContainer) {
-            fileInput.addEventListener('change', function () {
+            fileInput.addEventListener('change', function() {
                 previewContainer.innerHTML = '';
 
                 Array.from(this.files).forEach(file => {
@@ -52,5 +52,4 @@
             });
         }
     </script>
-
 @endpush

@@ -1,5 +1,5 @@
-<div id="noChatPlaceholder" class="col-md-9 d-flex flex-column justify-content-center align-items-center p-0"
-     style="height: 90vh; font-size: 14px; background-color: #f8f9fa;">
+<div id="noChatPlaceholder" class="d-flex flex-column justify-content-center align-items-center p-0 w-100"
+    style="height: 90vh; font-size: 14px; background-color: #f8f9fa;">
 
     <i class="fas fa-comments text-secondary mb-3" style="font-size: 48px;"></i>
 
