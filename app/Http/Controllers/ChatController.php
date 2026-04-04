@@ -6,6 +6,7 @@ use App\Events\MessageSent;
 use App\Http\Requests\StoreChatRequest;
 use App\Services\ChatService;
 use Illuminate\Http\Request;
+;
 
 class ChatController extends Controller
 {

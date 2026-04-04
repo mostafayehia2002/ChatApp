@@ -14,7 +14,10 @@ class MessageSent implements ShouldBroadcastNow
     public function __construct(
         public  $message,
         public int $conversationId
-    ) {}
+    ) {
+
+
+    }
 
     public function broadcastOn(): array
     {
