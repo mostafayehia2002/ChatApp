@@ -54,6 +54,7 @@ A chat application built with **Laravel 12** using a clean architecture based on
 ![Chat](screenshots/desktop-chat.png)
 
 ### Conversation View in Mobile
+![Conversation](screenshots/placeholder.png)
 ![Conversation](screenshots/conversations.png)
 ![Conversation](screenshots/chat.png)
 ### Media Messages
