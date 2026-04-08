@@ -2,10 +2,6 @@
 
 > A modern, real-time chat application built with **Laravel 12**, featuring instant messaging, WhatsApp-style read receipts, media attachments, and infinite scroll pagination with clean service-layer architecture.
 
-**[Overview](#overview) • [Features](#features) • [Architecture](#-architecture) • [Installation](#-installation--setup) • [Usage](#-usage) • [Technologies](#-technologies-used) • [License](#-license)**
-
----
-
 ## Overview
 
 **RealTimeChat** is a production-ready chat application designed to demonstrate modern Laravel best practices. It combines robust backend architecture with an intuitive user interface, enabling real-time conversations with media sharing, read status tracking, and activity monitoring.
@@ -20,7 +16,7 @@
 
 ---
 
-## 🚀 Features
+##  Features
 
 ### Authentication & User Management
 - **Registration** with email validation
@@ -51,7 +47,7 @@
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ### System Design Pattern
 
@@ -109,24 +105,33 @@ User ←→ Conversation (Many-to-Many)
 
 ## 📸 Screenshots & UI Gallery
 
-### Authentication Flow
-| Login Screen | Registration | Profile Management |
+### Authentication Pages
+#### Desktop
+| Login | Register | Profile |
 |---|---|---|
-| ![Login](screenshots/login.png) | ![Register](screenshots/register.png) | ![Profile](screenshots/profile.png) |
+| ![Login Desktop](screenshots/login-desktop.png) | ![Register Desktop](screenshots/register-desktop.png) | ![Profile Desktop](screenshots/profile-desktop.png) |
 
-### Desktop Application
-| Home Dashboard | Chat Interface |
-|---|---|
-| ![Home](screenshots/home.png) | ![Desktop Chat](screenshots/desktop-chat.png) |
-
-### Mobile & Responsive Views
-| Conversation List | Chat View | Media Messages |
+#### Mobile
+| Login Mobile | Register Mobile | Profile Mobile |
 |---|---|---|
-| ![Conversations](screenshots/conversations.png) | ![Chat](screenshots/chat.png) | ![Upload Media](screenshots/upload-media.png) |
+| ![Login Mobile](screenshots/login-mob.png) | ![Register Mobile](screenshots/register-mob.png) | ![Profile Mobile](screenshots/profile-mob.png) |
 
 ---
 
-## 🛠️ Installation & Setup
+###  Chat & Messaging
+#### Desktop
+| Chat Interface | Start Conversation | Empty State |
+|---|---|---|
+| ![Chat Desktop](screenshots/chat-desktop.png) | ![New Conversation Desktop](screenshots/start%20conversation-desktop.png) | ![Placeholder Desktop](screenshots/placeholder-desktop.png) |
+
+#### Mobile
+| Chat Mobile | Conversations Mobile | Empty State Mobile |
+|---|---|---|
+| ![Chat Mobile](screenshots/chat-mob.png) | ![Conversations Mobile](screenshots/conversation-mob.png) | ![Placeholder Mobile](screenshots/placeholder-mob.png) |
+
+---
+
+##  Installation & Setup
 
 ### Prerequisites
 - **PHP** ≥ 8.2
@@ -199,7 +204,7 @@ php artisan serve
 
 ---
 
-## 🚀 Usage
+##  Usage
 
 ### Development Environment
 
@@ -272,7 +277,7 @@ php artisan serve --host=0.0.0.0 --port=8000
 ---
 
 
-## 📦 Technologies Used
+##  Technologies Used
 
 ### Backend
 - **PHP 8.2+** - Server-side language
@@ -287,22 +292,13 @@ php artisan serve --host=0.0.0.0 --port=8000
 - **Vite** - Modern asset bundler with HMR support
 - **AJAX** - Asynchronous requests for infinite scroll
 
-### Development & Testing
-- **Pest** - Modern PHP testing framework
-- **Faker** - Fixture generation for test data
-- **Mockery** - Mocking library for unit tests
-- **Laravel Pint** - Code style fixer
-- **Laravel Pail** - Log viewer for development
-
 ### Utilities
 - **php-flasher** - Toast notifications system
 - **Laravel Tinker** - REPL for debugging
 - **Concurrently** - Run multiple processes in parallel
-
 ---
 
-
-## 🚀 Performance & Optimization
+##  Performance & Optimization
 
 - **Eager Loading**: Relations loaded with `with()` to prevent N+1 queries
 - **O(1) Unread Counts**: `last_read_message_id` enables instant unread calculation
@@ -312,32 +308,13 @@ php artisan serve --host=0.0.0.0 --port=8000
 
 ---
 
-## 📄 License
+##  License
 
 This project is open source and available under the **MIT License**. See the `LICENSE` file for complete details.
 
 ---
 
-## 🔮 Future Enhancements
-
-### Planned Features
-- 🔄 Typing indicators and "is typing..." status
-- ❤️ Message reactions (emoji reactions)
-- ✏️ Message editing and deletion with history
-- 👥 Group conversations with multiple participants
-- 📞 Voice and video calling integration
-- 🔐 End-to-end encryption for messages
-
-### Infrastructure Improvements
-- 📊 Redis caching layer for session and message caching
-- 🔍 Elasticsearch integration for message search
-- 🚀 Laravel Forge deployment automation
-- 🔄 CI/CD Pipeline (GitHub Actions)
-- 📈 Sentry integration for error tracking and monitoring
-
----
-
-## 📞 Support & Questions
+##  Support & Questions
 
 For issues, feature requests, or questions:
 

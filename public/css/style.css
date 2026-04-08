@@ -1,15 +1,34 @@
+/* ==================== Global Reset ==================== */
+
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+:root {
+    --primary: #667eea;
+    --primary-dark: #764ba2;
+    --secondary: #ec4899;
+    --accent: #06b6d4;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --dark: #1f2937;
+    --light: #f9fafb;
+    --muted: #6b7280;
+    --border: #e5e7eb;
 }
 
 html,
 body {
     height: 100%;
     width: 100%;
-    background-color: #f8f9fa;
+    background-color: #f8fafc;
     overflow: hidden;
 }
+
+/* ==================== Main Layout ==================== */
 
 main {
     height: 100%;
@@ -21,14 +40,14 @@ main .container-fluid {
     padding: 0;
 }
 
-/* Main Layout */
 #mainContainer {
     display: flex;
     flex-wrap: nowrap;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 70px);
     gap: 0;
     padding: 0 !important;
     margin: 0 !important;
+    background: white;
 }
 
 #chatContainer {
@@ -36,82 +55,115 @@ main .container-fluid {
     flex-direction: column;
     min-width: 0;
     gap: 0;
+    background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
 }
 
-/* Navbar app غامق */
-nav.navbar-app {
-    background-color: #fff !important;
-    height: 50px;
+/* ==================== Sidebar ==================== */
+
+#sidebar {
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    background-color: #ffffff;
+    border-right: 1px solid var(--border);
+    height: 90vh;
+    overflow-y: auto;
 }
 
-nav.navbar-app .navbar-brand {
-    color: #0d6efd !important;
+#sidebar::-webkit-scrollbar {
+    width: 6px;
 }
 
-nav.navbar-app .nav-link,
-nav.navbar-app .btn-link {
-    color: #212529 !important;
+#sidebar::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-nav.navbar-app .nav-link:hover,
-nav.navbar-app .btn-link:hover {
-    color: #0d6efd !important;
+#sidebar::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
 }
 
+#sidebar::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* Messages Container */
 #messages {
-    scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* IE and Edge */
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db #f3f4f6;
 }
 
 #messages::-webkit-scrollbar {
-    display: none;
-    /* Chrome, Safari */
+    width: 6px;
 }
 
-/* Sidebar Toggle */
-#sidebar {
-    transition: margin-left 0.3s ease, width 0.3s ease;
-    background-color: white;
-    margin-top: 4px;
+#messages::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-/* Hide sidebar on mobile */
+#messages::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+}
+
+#messages::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* ==================== Mobile Responsive ==================== */
+
 @media (max-width: 767.98px) {
     #sidebar {
         position: fixed;
-        left: 0;
-        top: 50px;
-        width: 100vw;
-        height: calc(100vh - 50px);
-        margin-left: -100vw;
-        z-index: 1000;
-        border-right: 1px solid #dee2e6;
+        left: -100%;
+        top: 70px;
+        width: 280px;
+        height: calc(100vh - 70px);
+        margin-left: 0;
+        z-index: 1040;
+        border-right: 1px solid var(--border);
         overflow-y: auto;
+        transition: left 0.3s ease;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        background: white;
     }
 
     #sidebar.show {
-        margin-left: 0;
+        left: 0;
+        box-shadow: 2px 0 20px rgba(0, 0, 0, 0.15);
     }
 
     #chatContainer {
         width: 100% !important;
     }
+
+    #mainContainer {
+        height: calc(100vh - 70px);
+    }
+
+    /* Close sidebar when clicking overlay */
+    body.sidebar-open::before {
+        content: '';
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1039;
+    }
 }
 
-/* Show sidebar on desktop */
+/* ==================== Desktop Responsive ==================== */
+
 @media (min-width: 768px) {
     #sidebar {
         position: relative !important;
         top: auto !important;
-        width: 25% !important;
-        min-width: 250px;
-        min-height: calc(100vh - 50px);
+        width: 28% !important;
+        min-width: 300px;
+        min-height: 90vh;
         z-index: auto !important;
-        border-right: 1px solid #dee2e6;
+        border-right: 1px solid var(--border);
         overflow-y: auto;
-        padding-top: 15px;
     }
 
     #sidebar.hidden {
@@ -123,3 +175,173 @@ nav.navbar-app .btn-link:hover {
         min-width: 0;
     }
 }
+
+/* ==================== Form Styles ==================== */
+
+.form-control {
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 16px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: #d1d5db;
+}
+
+.form-control.is-invalid {
+    border-color: var(--danger);
+    background-color: #fff5f5;
+}
+
+.form-control.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* ==================== Button Styles ==================== */
+
+.btn {
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    color: white;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+}
+
+.btn-light {
+    background-color: #ffffff;
+    border: 1px solid var(--border);
+    color: var(--dark);
+}
+
+.btn-light:hover {
+    background-color: #f3f4f6;
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* ==================== Message Bubble Animation ==================== */
+
+.message-bubble {
+    animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== Dropdown ==================== */
+
+.dropdown-menu {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.dropdown-item {
+    padding: 12px 20px;
+    color: var(--dark);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #f3f4f6;
+    color: var(--primary);
+}
+
+/* ==================== Badge ==================== */
+
+.badge {
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+}
+
+/* ==================== Modal ==================== */
+
+.modal-content {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--border);
+    padding: 24px;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--border);
+    padding: 16px 24px;
+}
+
+/* ==================== Smooth Transitions ==================== */
+
+button,
+a,
+input,
+select,
+textarea,
+.btn,
+.form-control {
+    transition: all 0.3s ease !important;
+}
+
+/* ==================== Status Indicator ==================== */
+
+.status-online {
+    width: 12px;
+    height: 12px;
+    background: var(--success);
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.status-offline {
+    width: 12px;
+    height: 12px;
+    background: #9ca3af;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+

@@ -1,77 +1,134 @@
 @extends('layouts.app')
 @section('content')
-    <div class="col-md-12 p-4" style="height: 90vh; background-color: #f8f9fa;">
+    <div class="col-md-12 p-4" style="height: 90vh; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); overflow-y: auto;">
 
-        <div class="card shadow-sm border-0 rounded-4 mx-auto" style="max-width: 600px;">
-            <div class="card-body p-4">
+        <div style="max-width: 600px; margin: 0 auto;">
+            <!-- Header -->
+            <div style="margin-bottom: 30px;">
+                <a href="{{ route('home') }}" style="color: #667eea; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-weight: 500; transition: all 0.3s;"
+                   onmouseover="this.style.transform='translateX(-4px)';" onmouseout="this.style.transform='translateX(0)';">
+                    <i class="fas fa-arrow-left"></i> Back to Chat
+                </a>
+            </div>
 
-                <h5 class="mb-4 fw-bold text-center">Profile Settings</h5>
-                <form action="{{route('profile.update')}}"  enctype="multipart/form-data" method="POST">
+            <!-- Profile Card -->
+            <div style="background: white; border-radius: 20px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid #e5e7eb;">
+
+                <!-- Title -->
+                <h2 style="margin: 0 0 30px 0; font-size: 24px; font-weight: 700; text-align: center; color: #1f2937;">
+                    <i class="fas fa-user-cog me-2" style="color: #667eea;"></i>Profile Settings
+                </h2>
+
+                <form action="{{route('profile.update')}}" enctype="multipart/form-data" method="POST">
                     @method('PUT')
                     @csrf
-                <!-- Profile Image -->
-                <div class="d-flex justify-content-center mb-4">
-                    <div class="position-relative">
 
-                        <img id="profilePreview"
-                             src="{{$user->media?$user->media->file_url:asset('storage/uploads/profiles/profile.jpg')}}"
-                             alt="no profile photo"
-                             class="rounded-circle border"
-                             style="width:120px; height:120px; object-fit:cover;">
+                    <!-- Profile Image Section -->
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <div style="position: relative; display: inline-block; margin-bottom: 20px;">
+                            <img id="profilePreview"
+                                src="{{$user->media ? $user->media->file_url : asset('storage/uploads/profiles/profile.jpg')}}"
+                                alt="Profile photo"
+                                style="width: 140px; height: 140px; object-fit: cover; border-radius: 50%; border: 4px solid #667eea; box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3); display: block;">
 
-                        <!-- edit icon -->
-                        <label for="profileImage"
-                               class="position-absolute bottom-0 end-0 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
-                               style="width:35px; height:35px; cursor:pointer;">
-                            <i class="fas fa-pen"></i>
+                            <!-- Edit Button -->
+                            <label for="profileImage"
+                                style="position: absolute; bottom: 0; right: 0; background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); transition: all 0.3s; border: 3px solid white;"
+                                onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='scale(1)';">
+                                <i class="fas fa-camera" style="font-size: 18px;"></i>
+                            </label>
+
+                            <input type="file"
+                                id="profileImage"
+                                style="display: none;"
+                                accept="image/*"
+                                name="image">
+                        </div>
+                        <p style="color: #9ca3af; font-size: 13px; margin: 12px 0 0 0;">Click the camera icon to upload a new photo</p>
+                    </div>
+
+                    <!-- Form Fields -->
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; font-weight: 600; color: #1f2937; font-size: 14px; margin-bottom: 8px;">
+                            <i class="fas fa-user me-2" style="color: #667eea;"></i>Full Name
                         </label>
-
-                        <input type="file"
-                               id="profileImage"
-                               class="d-none"
-                               accept="image/*"
-                               name="image"
-                        >
-                    </div>
-                </div>
-
-                <!-- Form -->
-                    <!-- Name -->
-                    <div class="mb-3">
-                        <label class="form-label">Full Name</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Enter your name" name="name" value="{{$user->name}}">
+                        <input type="text"
+                            class="form-control @error('name') is-invalid @enderror"
+                            placeholder="Enter your name"
+                            name="name"
+                            value="{{$user->name}}"
+                            style="border: 2px solid #e5e7eb; border-radius: 12px; padding: 12px 16px; font-size: 14px; transition: all 0.3s;"
+                            onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)';"
+                            onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none';">
                         @error('name')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div style="color: #ef4444; font-size: 13px; margin-top: 6px; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-exclamation-circle"></i>{{ $message }}
+                        </div>
                         @enderror
                     </div>
 
-                    <!-- Email -->
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Enter your email" name="email" value="{{$user->email}}">
+                    <div style="margin-bottom: 30px;">
+                        <label style="display: block; font-weight: 600; color: #1f2937; font-size: 14px; margin-bottom: 8px;">
+                            <i class="fas fa-envelope me-2" style="color: #667eea;"></i>Email Address
+                        </label>
+                        <input type="email"
+                            class="form-control @error('email') is-invalid @enderror"
+                            placeholder="Enter your email"
+                            name="email"
+                            value="{{$user->email}}"
+                            style="border: 2px solid #e5e7eb; border-radius: 12px; padding: 12px 16px; font-size: 14px; transition: all 0.3s;"
+                            onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)';"
+                            onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none';">
                         @error('email')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <p class="text-muted mb-3" style="font-size: 14px;">Change Password (optional)</p>
-                    <!-- Password -->
-                    <div class="mb-3">
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="New Password" name="password">
-                        @error('password')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div style="color: #ef4444; font-size: 13px; margin-top: 6px; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-exclamation-circle"></i>{{ $message }}
+                        </div>
                         @enderror
                     </div>
 
-                    <!-- Confirm Password -->
-                    <div class="mb-3">
-                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="Confirm Password" name="password_confirmation">
-                        @error('password_confirmation')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                    <!-- Password Section -->
+                    <div style="background: #f9fafb; border: 2px dashed #e5e7eb; border-radius: 12px; padding: 20px; margin-bottom: 30px;">
+                        <p style="margin: 0 0 16px 0; font-weight: 600; color: #1f2937; font-size: 13px;">
+                            <i class="fas fa-lock me-2" style="color: #667eea;"></i>Change Password (optional)
+                        </p>
+
+                        <div style="margin-bottom: 16px;">
+                            <input type="password"
+                                class="form-control @error('password') is-invalid @enderror"
+                                placeholder="New Password"
+                                name="password"
+                                style="border: 2px solid #e5e7eb; border-radius: 12px; padding: 12px 16px; font-size: 14px; transition: all 0.3s;"
+                                onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)';"
+                                onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none';">
+                            @error('password')
+                            <div style="color: #ef4444; font-size: 13px; margin-top: 6px; display: flex; align-items: center; gap: 6px;">
+                                <i class="fas fa-exclamation-circle"></i>{{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <input type="password"
+                                class="form-control @error('password_confirmation') is-invalid @enderror"
+                                placeholder="Confirm Password"
+                                name="password_confirmation"
+                                style="border: 2px solid #e5e7eb; border-radius: 12px; padding: 12px 16px; font-size: 14px; transition: all 0.3s;"
+                                onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102, 126, 234, 0.1)';"
+                                onblur="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none';">
+                            @error('password_confirmation')
+                            <div style="color: #ef4444; font-size: 13px; margin-top: 6px; display: flex; align-items: center; gap: 6px;">
+                                <i class="fas fa-exclamation-circle"></i>{{ $message }}
+                            </div>
+                            @enderror
+                        </div>
                     </div>
+
                     <!-- Button -->
-                    <button class="btn btn-primary w-100 mt-2" type="submit">
-                        Save Changes
+                    <button class="btn w-100" type="submit"
+                        style="padding: 12px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; font-weight: 600; border-radius: 12px; font-size: 16px; cursor: pointer; transition: all 0.3s;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 25px rgba(102, 126, 234, 0.4)';"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                        <i class="fas fa-check-circle me-2"></i>Save Changes
                     </button>
 
                 </form>
@@ -79,6 +136,7 @@
         </div>
     </div>
 @endsection
+
 @push('script')
     <script>
         document.getElementById('profileImage').addEventListener('change', function (e) {
