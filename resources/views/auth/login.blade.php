@@ -1,11 +1,28 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - RealTimeChat</title>
+    <title>EchoChat</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="EchoChat is a real-time messaging application." />
+    <meta name="keywords" content="chat, messaging, real-time, Laravel, EchoChat" />
+    <meta name="author" content="EchoChat" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#1f2937" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon.png') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
     <style>
         * {
@@ -47,6 +64,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -206,71 +224,64 @@
         }
     </style>
 </head>
+
 <body>
-<div class="login-container">
-    <div class="login-card">
-        <div class="logo-icon">
-            <i class="fas fa-comments"></i>
-        </div>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="logo-icon">
+                {{-- <i class="fas fa-comments"></i> --}}
+                <img src="{{ asset('logo.png') }}" alt="EchoChat Logo" style="width: 150px; object-fit: contain;">
+            </div>
+            <h2 class="form-title">Welcome Back!</h2>
+            <p class="form-subtitle">Sign in to continue to RealTimeChat</p>
 
-        <h2 class="form-title">Welcome Back!</h2>
-        <p class="form-subtitle">Sign in to continue to RealTimeChat</p>
+            <form action="{{ route('login.store') }}" method="post">
+                @csrf
 
-        <form action="{{route('login.store')}}" method="post">
-            @csrf
-
-            <div class="form-group">
-                <label for="email" class="form-label">
-                    <i class="fas fa-envelope me-2" style="color: #667eea;"></i>Email Address
-                </label>
-                <input type="email"
-                       class="form-control @error('email') is-invalid @enderror"
-                       id="email"
-                       placeholder="your@email.com"
-                       name="email"
-                       value="{{ old('email') }}"
-                       required>
-                @error('email')
-                <div class="error-message">
-                    <i class="fas fa-exclamation-circle"></i>
-                    {{ $message }}
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        <i class="fas fa-envelope me-2" style="color: #667eea;"></i>Email Address
+                    </label>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                        placeholder="your@email.com" name="email" value="{{ old('email') }}" required>
+                    @error('email')
+                        <div class="error-message">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
-                @enderror
+
+                <div class="form-group">
+                    <label for="password" class="form-label">
+                        <i class="fas fa-lock me-2" style="color: #667eea;"></i>Password
+                    </label>
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
+                        placeholder="••••••••" name="password" required>
+                    @error('password')
+                        <div class="error-message">
+                            <i class="fas fa-exclamation-circle"></i>
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                </button>
+            </form>
+
+            <div class="divider">
+                <span class="divider-text">New to RealTimeChat?</span>
             </div>
 
-            <div class="form-group">
-                <label for="password" class="form-label">
-                    <i class="fas fa-lock me-2" style="color: #667eea;"></i>Password
-                </label>
-                <input type="password"
-                       class="form-control @error('password') is-invalid @enderror"
-                       id="password"
-                       placeholder="••••••••"
-                       name="password"
-                       required>
-                @error('password')
-                <div class="error-message">
-                    <i class="fas fa-exclamation-circle"></i>
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
-            <button type="submit" class="btn-login">
-                <i class="fas fa-sign-in-alt me-2"></i>Sign In
-            </button>
-        </form>
-
-        <div class="divider">
-            <span class="divider-text">New to RealTimeChat?</span>
+            <a href="{{ route('register') }}" class="auth-link">
+                Create a new account <strong>→</strong>
+            </a>
         </div>
-
-        <a href="{{route('register')}}" class="auth-link">
-            Create a new account <strong>→</strong>
-        </a>
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

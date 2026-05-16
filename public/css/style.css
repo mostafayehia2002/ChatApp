@@ -2,6 +2,7 @@
 
 * {
     padding: 0;
+    box-sizing: border-box;
     margin: 0;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
@@ -252,6 +253,7 @@ main .container-fluid {
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -344,4 +346,3 @@ textarea,
     border: 2px solid white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
-
